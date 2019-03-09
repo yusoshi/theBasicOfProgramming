@@ -3,9 +3,10 @@
 let rec minimum lst = match lst with
     [] -> max_int
   | first :: rest -> 
+    let min_rest = minimum rest in
     if first <= minimum rest
 	then first
-	else minimum rest
+	else min_rest
 
 
 (* test *)
