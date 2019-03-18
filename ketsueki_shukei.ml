@@ -5,9 +5,7 @@
 let rec ketsueki_shukei lst = match lst with
     [] -> (0, 0, 0, 0)
   | ({ name = n; height = h; weight = w; birth_date = bi; blood_type = bl } as person) :: rest ->
-  let shukei_rest = ketsueki_shukei rest in
-    match shukei_rest with 
-	(a, b, o, ab) -> 
+  let (a, b, o, ab) = ketsueki_shukei rest in
 	    if bl = "A" then (a + 1, b, o, ab)
 	    else if bl = "B" then (a, b + 1, o, ab)
 	    else if bl = "O" then (a, b, o + 1, ab)
