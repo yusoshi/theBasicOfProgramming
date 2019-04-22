@@ -1,4 +1,3 @@
-#use "map.ml"
 #use "person_list.ml"
 
 let getName person = match person with
@@ -7,7 +6,7 @@ let getName person = match person with
 
 (* 目的 : person_t 型のリストを受け取ったら、その中に出てくる人の名前のリストを返す *)
 (* person_namae : person_t list -> string list *)
-let person_namae lst = map getName lst
+let person_namae lst = List.map getName lst
 
 
 
