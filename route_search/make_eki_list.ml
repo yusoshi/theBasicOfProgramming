@@ -1,4 +1,4 @@
-#use "global_ekimei_list.ml"
+#use "seiretsu.ml"
 
 type eki_t = {
     namae: string;           (* 漢字の駅名 *)
@@ -8,9 +8,9 @@ type eki_t = {
 
 (* 目的 : ekimei_t 型のリストを受け取ったら、その駅名を使って eki_t 型のリストをつくる *)
 (* make_eki_list : ekimei_t list -> eki_t list *)
-let rec make_eki_list lst = match lst with
-    [] -> []
-    | { kanji = kanji; kana = kana; romaji = romaji; shozoku = shozoku } :: rest ->
-       {  namae = kanji; saitan_kyori = infinity; temae_list = [] } :: make_eki_list rest
+let make_eki_list lst =
+    List.map (fun { kanji = kanji; kana = kana; romaji = romaji; shozoku = shozoku } -> { namae = kanji; saitan_kyori = infinity; temae_list = [] }) lst
 
 let eki_lst = make_eki_list global_ekimei_list
+
+
