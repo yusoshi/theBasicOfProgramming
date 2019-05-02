@@ -1,12 +1,12 @@
 #use "koushin1.ml"
 
-(* 目的 : 直前に確定した駅p(eki_t型)と未確定の駅のリストv(eki_t list)を受け取ったら、必要な更新処理を行った後の未確定の駅のリストを返す *)
+(* 目的 : 直前に確定した駅p(eki_t型)と未確定の駅のリストv(eki_t list)とekikan_t型のリストlstをうけとったら、必要な更新処理を行った後の未確定の駅のリストを返す *)
 (* koushin : eki_t -> eki_t list -> eki_t list *)
-let koushin p v =
+let koushin p v lst =
     List.map (fun q -> match (p, q) with
                  ({namae = pn; saitan_kyori = ps; temae_list = pt},
                   {namae = qn; saitan_kyori = qs; temae_list = qt }) ->
-                 let kyori = get_ekikan_kyori pn qn global_ekikan_list in
+                 let kyori = get_ekikan_kyori pn qn lst in
                      if kyori = infinity then q
     	         else if ps +. kyori < qs then 
                      {namae = qn; saitan_kyori = ps +. kyori; temae_list = qn :: pt}
